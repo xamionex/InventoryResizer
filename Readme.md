@@ -36,3 +36,8 @@ It doesn't matter how you install the mod into the plugin folder just so long as
 - BepInEx
   - plugins
     - InventoryResizer.dll
+
+## Configuration
+
+You can change configurations of the mod inside Bepinex/Config and opening the .cfg with a text editor, yes, you can use notepad.
+Notice: You can change any setting in-game and it will take effect no reloading needed!
