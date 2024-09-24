@@ -18,7 +18,7 @@ public class InventoryPatch
 			// replaces 670 offset for workbench crafting with 1000
 			if (codes[i].opcode == OpCodes.Ldc_R4 && codes[i].operand.ToString() == "670")
 			{
-				codes[i] = new CodeInstruction(OpCodes.Ldc_R4, 1000f);
+				codes[i] = new CodeInstruction(OpCodes.Ldc_R4, Plugin.WorkbenchCraftingOffset.Value);
 				break;
 			}
 		}

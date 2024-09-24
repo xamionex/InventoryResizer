@@ -16,9 +16,10 @@ public class Plugin : BaseUnityPlugin
     public const string PluginGUID = PluginAuthor + "." + PluginName;
     public const string PluginAuthor = "amione";
     public const string PluginName = "InventoryResizer";
-    public const string PluginVersion = "1.0.1";
+    public const string PluginVersion = "1.0.2";
     public static ManualLogSource Log;
     public static FileSystemWatcher fileWatcher;
+    public static ConfigEntry<float> WorkbenchCraftingOffset;
     public static ConfigEntry<int> RightSlots;
     public static ConfigEntry<int> DownSlots;
     public static ConfigEntry<int> InventoryRightSlots;
@@ -32,6 +33,7 @@ public class Plugin : BaseUnityPlugin
         Log = Logger;
         ConfigFile = new ConfigFile(System.IO.Path.Combine(Paths.ConfigPath, PluginGUID + ".cfg"), true);
 
+        WorkbenchCraftingOffset = ConfigFile.Bind($"{PluginName}", "Workbench Crafting Offset", 1000f, "Pixels offset for the workbench crafting window, requires restart, 1550 is the almost the edge of the screen on fullhd which looks nice");
         RightSlots = ConfigFile.Bind($"{PluginName}", "Storage Right Slots", 12, "Number that determines slots in workbench to the right");
         DownSlots = ConfigFile.Bind($"{PluginName}", "Storage Down Slots", 9, "Number that determines slots in workbench downward");
         InventoryRightSlots = ConfigFile.Bind($"{PluginName}", "Inventory Right Slots", 2, "Number that determines slots in inventory to the right");
