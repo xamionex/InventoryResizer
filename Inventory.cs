@@ -29,15 +29,21 @@ public class InventoryPatch
     [HarmonyPrefix]
     public static void AddSlots(Inventory __instance, string labelName = "")
     {
-        if (Plugin.InventorySlots.Value && __instance.invType == Inventory.InvType.playerInv && __instance.slots.Count != Plugin.InventoryRightSlots.Value*Plugin.InventoryDownSlots.Value)
+        if (Plugin.InventorySlots.Value && __instance.invType == Inventory.InvType.playerInv)
         {
 			__instance.maxColumns = Plugin.InventoryRightSlots.Value;
-			ModifySlots(__instance, __instance.maxColumns*Plugin.InventoryDownSlots.Value);
+			if (__instance.slots.Count != Plugin.InventoryRightSlots.Value*Plugin.InventoryDownSlots.Value)
+			{
+				ModifySlots(__instance, __instance.maxColumns*Plugin.InventoryDownSlots.Value);
+			}
         }
-        if (labelName == "Storage" && __instance.slots.Count != Plugin.RightSlots.Value*Plugin.DownSlots.Value)
+        if (labelName == "Storage")
         {
 			__instance.maxColumns = Plugin.RightSlots.Value;
-			ModifySlots(__instance, __instance.maxColumns*Plugin.DownSlots.Value);
+			if (__instance.slots.Count != Plugin.RightSlots.Value*Plugin.DownSlots.Value)
+			{
+				ModifySlots(__instance, __instance.maxColumns*Plugin.DownSlots.Value);
+			}
         }
     }
 

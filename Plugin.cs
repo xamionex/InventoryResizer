@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using System;
 using System.IO;
 
 namespace InventoryResizer;
@@ -15,7 +16,7 @@ public class Plugin : BaseUnityPlugin
     public const string PluginGUID = PluginAuthor + "." + PluginName;
     public const string PluginAuthor = "amione";
     public const string PluginName = "InventoryResizer";
-    public const string PluginVersion = "1.0.0";
+    public const string PluginVersion = "1.0.1";
     public static ManualLogSource Log;
     public static FileSystemWatcher fileWatcher;
     public static ConfigEntry<int> RightSlots;
@@ -45,11 +46,17 @@ public class Plugin : BaseUnityPlugin
         fileWatcher = new FileSystemWatcher(Paths.ConfigPath, PluginGUID + ".cfg");
         fileWatcher.NotifyFilter = NotifyFilters.LastWrite;
         fileWatcher.Changed += OnFileChanged;
+        ConfigFile.ConfigReloaded += OnConfigReloaded;
         fileWatcher.EnableRaisingEvents = true;
     }
+
+    private void OnConfigReloaded(object sender, EventArgs e)
+    {
+        Log.LogInfo($"Reloaded configuration file");
+    }
+
     private void OnFileChanged(object sender, FileSystemEventArgs e)
     {
         ConfigFile.Reload();
-        Log.LogInfo($"Reloaded configuration file");
     }
 }
