@@ -1,3 +1,5 @@
+# Migrated to [DarkwoodCustomizer](https://github.com/xamionex/DarkwoodCustomizer/)
+
 # InventoryResizer
 
 A mod for darkwood that changes your inventory size to whatever you want
